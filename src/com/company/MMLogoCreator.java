@@ -2,40 +2,36 @@ package com.company;
 
 public class MMLogoCreator {
 
-    char a = '-';
-    char b = '*';
+    private char emptySymbol = '-';
+    private char fillSymbol = '*';
 
     public String printLogo(int letterWidth) {
 
         if (letterWidth < 2 || letterWidth > 10000)
-            return "Letter width must be in the range 2 < N < 10000";
+            return "Letter width must be in the range 2 < N < 10000\n";
 
         if (letterWidth % 2 == 0)
-            return "Must be odd number!";
+            return "Letter width must be an odd number!\n";
 
-        String finalAnswer = "";
+        StringBuilder finalAnswer = new StringBuilder();
 
         for (int i = 0; i <= letterWidth; i++) {
             StringBuilder sb = new StringBuilder();
-            for (int j = 0; j < 5 * letterWidth; j++) {
-                sb.append(a);
-            }
+
+            // Fill the line with empty symbols
+            sb.append(String.valueOf(emptySymbol).repeat(5 * letterWidth));
+
+            // Substitute empty symbol with fill symbol where necessary
             for (int j = 0; j < letterWidth; j++) {
-                sb.setCharAt(j + letterWidth - i, b);
-            }
-            for (int j = 0; j < letterWidth; j++) {
-                sb.setCharAt(j + letterWidth + i, b);
-            }
-            for (int j = 0; j < letterWidth; j++) {
-                sb.setCharAt(j + 3 * letterWidth - i, b);
-            }
-            for (int j = 0; j < letterWidth; j++) {
-                sb.setCharAt(j + 3 * letterWidth + i, b);
+                sb.setCharAt(j + letterWidth - i, fillSymbol);
+                sb.setCharAt(j + letterWidth + i, fillSymbol);
+                sb.setCharAt(j + 3 * letterWidth - i, fillSymbol);
+                sb.setCharAt(j + 3 * letterWidth + i, fillSymbol);
             }
 
-            finalAnswer += sb.toString() + sb.toString() + "\n";
+            finalAnswer.append(sb.toString()).append(sb.toString()).append("\n");
         }
 
-        return finalAnswer;
+        return finalAnswer.toString();
     }
 }
