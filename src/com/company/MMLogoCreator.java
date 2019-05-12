@@ -7,7 +7,7 @@ public class MMLogoCreator {
 
     public String printLogo(int letterWidth) {
 
-        if (letterWidth < 2 || letterWidth > 10000)
+        if (letterWidth <= 2 || letterWidth >= 10000)
             return "Letter width must be in the range 2 < N < 10000\n";
 
         if (letterWidth % 2 == 0)
